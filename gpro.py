@@ -47,7 +47,7 @@ Respond in the following format:
 
 
 def prepare_dataset(split="train"):
-    """Load and prepare the GSM8K dataset for training with string prompts."""
+    """Load and prepare the GSM8K data for training with string prompts."""
     data = load_dataset('openai/gsm8k', 'main')[split]
     formatted_data = []
 
@@ -97,8 +97,8 @@ def extract_answer_from_model_output(text):
 
 def extract_answer_from_dataset(text):
     """
-    Extracts the answer from the dataset.
-    The dataset separates the answer using the '####' delimiter.
+    Extracts the answer from the data.
+    The data separates the answer using the '####' delimiter.
     """
     if "####" not in text:
         return None
@@ -854,7 +854,7 @@ def main():
     # -------------------------------
     # Step 0: INITIAL EVALUATION
     # -------------------------------
-    # Load the complete training dataset using a helper function (assumed defined elsewhere).
+    # Load the complete training data using a helper function (assumed defined elsewhere).
     all_data = prepare_dataset("train")
     # Randomize the order of examples.
     random.shuffle(all_data)
@@ -902,7 +902,7 @@ def main():
     # Step 2: FINAL EVALUATION & SAVING
     # -------------------------------
     print("\nFinal model evaluation after GRPO RL finetuning:")
-    # Evaluate the final model performance using the evaluation dataset.
+    # Evaluate the final model performance using the evaluation data.
     post_grpo_accuracy = evaluate_model(model, tokenizer, eval_data, device)
     print(f"Post-GRPO Accuracy: {post_grpo_accuracy:.2f}%")
     print(f"Total Improvement: {post_grpo_accuracy - pre_grpo_accuracy:.2f}%")

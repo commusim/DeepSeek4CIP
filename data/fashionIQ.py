@@ -3,7 +3,7 @@ from torch.utils.data import Dataset
 import torch
 import os
 current_file_path = os.path.abspath(__file__)
-replace_file_path_prefix = current_file_path.replace("dataset/datasets_ccneg.py", "data/ccneg/")
+replace_file_path_prefix = current_file_path.replace("data/datasets_ccneg.py", "data/ccneg/")
 
 
 class FashionIQ(Dataset):

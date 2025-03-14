@@ -108,7 +108,7 @@ def extratc_key(start_token, end_token):
 
 if __name__ == "__main__":
     root_path = "D:/dataset/fashionIQ/fashionIQ/image_data"
-    path1 =  "D:/dataset/fashionIQ/fashionIQ/captions_pairs/fashion_iq-train-cap.txt"
+    path1 =  "D:/data/fashionIQ/fashionIQ/captions_pairs/fashion_iq-train-cap.txt"
     # image1 = "dress/B003FGW7MK.jpg"
     # image2 = "dress/B008BHCT58.jpg"
     # text = "is solid black with no sleeves"
