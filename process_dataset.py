@@ -33,6 +33,9 @@ def main(args):
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
     args.add_argument("--model_path", type=str, default="/root/commusim/model-zoo/Qwen2-VL-7B-Instruct")
+    args.add_argument("--spilt", type=str, default="train")
+    args.add_argument("--data_path", type=str, default="/root/commusim/data/fashionIQ")
+    # args.add_argument("--batch_size", type=int, default=1)
     args = args.parse_args()
     main(args)
 
