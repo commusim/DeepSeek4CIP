@@ -8,7 +8,7 @@ def LLM_init(model_path):
     model = Qwen2VLForConditionalGeneration.from_pretrained(
         model_path, torch_dtype="auto", device_map="auto"
     )
-    processor = AutoProcessor.from_pretrained(model_path)
+    processor = AutoProcessor.from_pretrained(model_path,use_fast=True)
     return processor, model
 
 def message_unit(image_path, prompt):
@@ -26,7 +26,7 @@ def message_unit(image_path, prompt):
     ]
     return messages
 
-def process_input(messages):
+def process_input(messages, processor):
     # Preparation for inference
     text = processor.apply_chat_template(
         messages, tokenize=False, add_generation_prompt=True
@@ -50,7 +50,8 @@ def inference(model, inputs):
     generated_ids_trimmed = [
         out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
     ]
-    return generated_ids_trimmed
+    return generated_ids_trimmed, generated_ids
+
 
 def process_output(processor, generated_ids_trimmed):
 
@@ -64,11 +65,11 @@ def main():
     processer,model = LLM_init(model_path = "/root/commusim/model-zoo/Qwen2-VL-7B-Instruct")
     prompt = "describe this image"
     image_path =  "https://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen-VL/assets/demo.jpeg"
-    message_unit = message_unit(image_path,prompt)
-    inputs = process_input(message_unit)
+    message = message_unit(image_path,prompt)
+    inputs = process_input(message,processer)
     generated_ids_trimmed = inference(model,inputs)
     text = process_output(processer,generated_ids_trimmed)
-    print("".format(text))
+    print("{}".format(text))
     return None
 
 
