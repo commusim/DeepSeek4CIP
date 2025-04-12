@@ -36,7 +36,7 @@ def main(args):
             generated_ids_trimmed,output = inference(model,inputs)
             text = process_output(processer,generated_ids_trimmed)
             # print("{}".format(text))
-            target.append(text)
+            target.append(text) 
             
         if args.task in ["source"]:
             message = message_unit(source_img_path,img_prompt)
